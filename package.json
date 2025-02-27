@@ -1,0 +1,26 @@
+{
+  "name": "pp8-mini-blog",
+  "version": "1.0.0",
+  "description": "Creating a mini blog",
+  "type": "module",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maple-johnson/pp8-mini-blog.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maple-johnson/pp8-mini-blog/issues"
+  },
+  "homepage": "https://github.com/maple-johnson/pp8-mini-blog#readme",
+  "dependencies": {
+    "express": "^4.21.2",
+    "mariadb": "^3.4.0",
+    "nodemon": "^3.1.9"
+  }
+}
