@@ -67,14 +67,14 @@ app.post('/submit', async (req, res) => {
      res.render('confirm', { newPost });
 });
 
-app.post('/entries', async (req, res) => {
+app.get('/entries', async (req, res) => {
 
     const conn = await connect();
 
     //Query the database
     const posts = await conn.query('SELECT * FROM posts')
 
-    res.render('entries.ejs', {posts});
+    res.render('entries', {posts});
 });
 
 //Tell the server to listen on our specified port
