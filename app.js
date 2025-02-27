@@ -55,9 +55,9 @@ app.post('/submit', async (req, res) => {
      };
 
      console.log(newPost);
-     //posts.push(newPost);
 
-    const conn = await connect();
+
+     const conn = await connect();
 
      const insertQuery = await conn.query(`INSERT INTO posts
         (name, title, content)
@@ -67,7 +67,7 @@ app.post('/submit', async (req, res) => {
      res.render('confirm', { newPost }); 
 });
 
-app.post('/entries', async (req, res) => {
+app.get('/entries', async (req, res) => {
 
     const conn = await connect();
 
