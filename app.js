@@ -59,10 +59,10 @@ app.post('/submit', async (req, res) => {
 
     //  const conn = await connect();
 
-    //  const insertQuery = await conn.query(`insert into posts 
-    //     (author, title, content)
-    //     values (?, ?, ?)`,
-    //     [newPost.name, newPost.title, newPost.content]);
+     const insertQuery = await conn.query(`INSERT INTO posts
+        (name, title, content)
+        values (?, ?, ?)`,
+        [newPost.name, newPost.title, newPost.content]);
 
      res.render('confirm', { newPost }); 
 });
