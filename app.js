@@ -55,14 +55,16 @@ app.post('/submit', async (req, res) => {
      };
 
      console.log(newPost);
-     posts.push(newPost);
+     //posts.push(newPost);
+
+     const conn = await connect();
 
      const insertQuery = await conn.query(`insert into orders 
-        (name, title, content)
+        (author, title, content)
         values (?, ?, ?)`,
         [newPost.name, newPost.title, newPost.content]);
 
-     res.render('confirm', { post: newPost });
+     res.render('confirm', { newPost });
 });
 
 app.post('/entries', async (req, res) => {
