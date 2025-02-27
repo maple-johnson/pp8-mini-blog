@@ -28,6 +28,8 @@ async function connect() {
 //Instantiate an Express application
 const app = express();
 
+const posts = [];
+
 //Middleware to parse form data
 app.use(express.urlencoded({ extended: true }));
 
@@ -55,8 +57,13 @@ app.post('/submit', (req, res) => {
      };
 
      console.log(newPost);
+     posts.push(newPost);
 
      res.render('confirmation', { post: newPost });
+});
+
+app.post('/entries', (req, res) => {
+    res.render('entries.ejs', {posts});
 });
 
 //Tell the server to listen on our specified port
