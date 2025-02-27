@@ -1,4 +1,4 @@
--- CREATE DATABASE blog
+-- CREATE DATABASE blog;
 
 USE blog;
 

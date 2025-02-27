@@ -7,19 +7,20 @@
 </head>
 <body>
     <h1>Entries</h1>
-    
+
     <% if(posts.length === 0) { %>
         <p>no entries</p>
-    <% } %>
+    <% } else { %>
 
-    <% for (let i = 0; i < posts.length; i++) { %>
-        <div>
-            <p>Title: <%= post.title %></p>
-            <p>Content: <%= post.content %></p>
-            <p>Author : <%= post.name%></p>
+        <% for (let i = 0; i < posts.length; i++) { %>
+            <div>
+                <p>Title: <%= post.title %></p>
+                <p>Content: <%= post.content %></p>
+                <p>Author : <%= post.name%></p>
 
-            <hr>
-        </div>
+                <hr>
+            </div>
+        <% } %>
     <% } %>
 </body>
 </html>
