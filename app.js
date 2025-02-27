@@ -28,8 +28,6 @@ async function connect() {
 //Instantiate an Express application
 const app = express();
 
-const posts = [];
-
 //Middleware to parse form data
 app.use(express.urlencoded({ extended: true }));
 
@@ -60,10 +58,9 @@ app.post('/submit', async (req, res) => {
      posts.push(newPost);
 
      const insertQuery = await conn.query(`insert into orders 
-        (firstName, lastName, email, size, method, toppings)
-        values (?, ?, ?, ?, ?, ?)`,
-        [order.fname, order.lname, order.email, order.size, 
-        order.method, order.toppings]);
+        (name, title, content)
+        values (?, ?, ?)`,
+        [newPost.name, newPost.title, newPost.content]);
 
      res.render('confirm', { post: newPost });
 });
@@ -73,7 +70,7 @@ app.post('/entries', async (req, res) => {
     const conn = await connect();
 
     //Query the database
-    const orders = await conn.query('SELECT * FROM orders')
+    const posts = await conn.query('SELECT * FROM orders')
 
     res.render('entries.ejs', {posts});
 });
