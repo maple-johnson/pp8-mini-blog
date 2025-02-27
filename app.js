@@ -49,7 +49,7 @@ app.get('/', (req, res) => {
     res.render('home');
 });
 
-app.post('/submit', (req, res) => {
+app.post('/submit', async (req, res) => {
      const newPost = {
           name: req.body.name,
           title: req.body.title,
@@ -59,10 +59,22 @@ app.post('/submit', (req, res) => {
      console.log(newPost);
      posts.push(newPost);
 
-     res.render('confirmation', { post: newPost });
+     const insertQuery = await conn.query(`insert into orders 
+        (firstName, lastName, email, size, method, toppings)
+        values (?, ?, ?, ?, ?, ?)`,
+        [order.fname, order.lname, order.email, order.size, 
+        order.method, order.toppings]);
+
+     res.render('confirm', { post: newPost });
 });
 
-app.post('/entries', (req, res) => {
+app.post('/entries', async (req, res) => {
+
+    const conn = await connect();
+
+    //Query the database
+    const orders = await conn.query('SELECT * FROM orders')
+
     res.render('entries.ejs', {posts});
 });
 
