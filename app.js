@@ -55,7 +55,7 @@ app.post('/submit', async (req, res) => {
      };
 
      console.log(newPost);
-     //posts.push(newPost);
+
 
      const conn = await connect();
 
@@ -64,7 +64,7 @@ app.post('/submit', async (req, res) => {
         values (?, ?, ?)`,
         [newPost.name, newPost.title, newPost.content]);
 
-     res.render('confirm', { newPost });
+     res.render('confirm', { newPost }); 
 });
 
 app.get('/entries', async (req, res) => {
@@ -72,7 +72,9 @@ app.get('/entries', async (req, res) => {
     const conn = await connect();
 
     //Query the database
-    const posts = await conn.query('SELECT * FROM posts')
+    const posts = await conn.query('SELECT * FROM posts');
+
+    console.log(posts);
 
     res.render('entries', {posts});
 });
