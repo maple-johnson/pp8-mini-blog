@@ -55,14 +55,16 @@ app.post('/submit', async (req, res) => {
      };
 
      console.log(newPost);
-     posts.push(newPost);
+     //posts.push(newPost);
 
-     const insertQuery = await conn.query(`insert into orders 
+     const conn = await connect();
+
+     const insertQuery = await conn.query(`INSERT INTO posts
         (name, title, content)
         values (?, ?, ?)`,
         [newPost.name, newPost.title, newPost.content]);
 
-     res.render('confirm', { post: newPost });
+     res.render('confirm', { newPost });
 });
 
 app.post('/entries', async (req, res) => {
@@ -70,7 +72,7 @@ app.post('/entries', async (req, res) => {
     const conn = await connect();
 
     //Query the database
-    const posts = await conn.query('SELECT * FROM orders')
+    const posts = await conn.query('SELECT * FROM posts')
 
     res.render('entries.ejs', {posts});
 });
