@@ -59,7 +59,7 @@ app.post('/submit', async (req, res) => {
 
      const conn = await connect();
 
-     const insertQuery = await conn.query(`insert into orders 
+     const insertQuery = await conn.query(`insert into posts 
         (author, title, content)
         values (?, ?, ?)`,
         [newPost.name, newPost.title, newPost.content]);
@@ -72,7 +72,7 @@ app.post('/entries', async (req, res) => {
     const conn = await connect();
 
     //Query the database
-    const posts = await conn.query('SELECT * FROM orders')
+    const posts = await conn.query('SELECT * FROM posts')
 
     res.render('entries.ejs', {posts});
 });
